@@ -101,15 +101,15 @@ import random
 from timeit import Timer
 
 
-def randomSortedIntList( num ):
-    """随机生成包含 num 个有序整数的数组"""
+def randomIntList( num ):
+    """随机生成包含 num 个整数的数组"""
     alist = []
     for i in range(num):
         alist.append(random.randint(1,50))
     
     return alist
 
-alist = randomSortedIntList(20)
+alist = randomIntList(20)
 
 
 
