@@ -44,7 +44,22 @@ class HashTable:
 
     def rehash(self,oldhash,size):
         """ 这里的冲突解决技术是运用“+1”的线性探测 """
-        return (oldhash+1)%size
+        # 开放地址法：open addressing
+
+        # 线性探测。linear probing
+        
+        #return (oldhash+1)%size
+
+        # 扩展线性探测 extend the linear probing technique
+        # 不再按顺序一个一个地寻找新槽，而是 跳过一些槽，这样能更加平均地分配出现冲突的数据，进而潜在地减少集中问题出现的次数
+
+        return (oldhash+3)%size
+        
+        #二次探测法quadratic probing
+        #我们不是每次在冲突中选择跳过固定个数的槽，而是 使用一个再散列函数使每次跳过槽的数量会依次增加1,3,5,7,9，以此类推。
+        #这意味着如果原槽为 第h个，那么再散列时访问的槽为第h+1，h+4，h+9，h+16个，以此类推。换言之，二次探测法 使用一个连续的完全平方数数列作为它的跳跃值。
+        
+
 
     def get(self, key): 
         """给定一个 key 值，返回关联的数据，若不存在，返回None 。
@@ -97,7 +112,7 @@ class HashTable:
 
 
 class HashTable2:
-
+    """从一个使用数据项链的方法来解决冲突的hash table"""
     def __init__(self):
         """产生一个新的空映射，返回一个空映射的集合。"""
         self.size = 11
