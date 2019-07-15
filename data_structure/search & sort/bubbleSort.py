@@ -52,11 +52,12 @@ def shortBubbleSort(alist, acending = True):
     短路冒泡排序 short bubble
     尤其是如果在整个排序过程中没有交换，我们 就可断定列表已经排好。
     因此可改良冒泡排序，使其在已知列表排好的情况下提前结束。
-    这就是 说，如果一个列表只需要几次遍历就可排好，冒泡排序就占有优势:它可以在发现列表已排好时 立刻结束。"""
+    这就是 说，如果一个列表只需要几次遍历就可排好，冒泡排序就占有优势:它可以在发现列表已排好时 立刻结束。
+    """
 
     exchange = True
     round = len(alist)-1
-    while round > 0 and exchange:
+    while exchange:
         exchange = False
         for i in range(round):
             if acending:
@@ -70,5 +71,34 @@ def shortBubbleSort(alist, acending = True):
     
     return alist
  
-print(bubbleSort(alist,False))
+#print(shortBubbleSort(alist,False))
+
+def doubleBubbleSort(alist,acending = True):
+    """冒泡排序可以被修改为向两个方向冒泡。第一次操作向上冒泡，第二次操作向下冒泡。这 种交替模式一直持续到不需要更多的操作"""
+    exchange = True
+    left = 0
+    right = len(alist)-1
+    isRight = True
+
+    while exchange and left < right:
+        exchange = False
+        if isRight:
+            for i in range(left,right):
+                if alist[i] > alist[i+1]:
+                    exchange = True
+                    alist[i], alist[i+1] = alist[i+1], alist[i]
+            
+            isRight = not isRight
+            right -= 1
+        else:
+            for i in range(right,left,-1):
+                if alist[i] < alist[i-1]:
+                    exchange = True
+                    alist[i], alist[i-1] = alist[i-1], alist[i]
+            isRight = not isRight
+            left += 1
+    return alist
+print(doubleBubbleSort(alist,False))
+
+
 
